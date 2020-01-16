@@ -1,0 +1,1 @@
+该incubator-dubbo-ops-master就是dubbo控制台的源码，直接在dubbo admin目录下 用命令行的形式启动  步骤：1、mvn clean 2、mvn package 3、在target目录下找到jar文件，用java -jar 命令启动
