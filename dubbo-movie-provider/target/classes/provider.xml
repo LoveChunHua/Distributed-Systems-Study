@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:dubbo="http://dubbo.apache.org/schema/dubbo"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans        http://www.springframework.org/schema/beans/spring-beans-4.3.xsd        http://dubbo.apache.org/schema/dubbo        http://dubbo.apache.org/schema/dubbo/dubbo.xsd">
+ 
+    <!-- 为当前应用起一个名字 -->
+    <dubbo:application name="dubbo-movie-provider"  />
+ 
+    <!-- 告诉dubbo注册中心的地址在哪里？注册中心用的是zookeeper -->
+    <dubbo:registry address="zookeeper://192.168.184.129:2181" />
+ 
+    <!-- 用dubbo协议在20880端口暴露服务，消费者就会与本机的20880端口建立连接进行通信 -->
+    <dubbo:protocol name="dubbo" port="20880" />
+ 
+    <!-- 声明需要暴露的服务接口（哪些接口能对外提供功能都在这里一一注册 -->
+    <dubbo:service interface="com.hua.dubbo.service.MovieService" ref="MovieService" />
+ 
+    <!-- 和本地bean一样实现服务 -->
+    <bean id="MovieService" class="com.hua.dubbo.service.impl.MovieServiceImpl" />
+</beans>
